@@ -22,7 +22,7 @@ public class OrderApp {
         Member member = new Member(1L, "first", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderService.createOrder(member.getId(), "one", 10000);
+        Order order = orderService.createOrder(member.getId(), "one", 20000);
         System.out.println("order = " + order.toString());
         System.out.println("order.cal = " + order.calculatePrice(order.getItemPrice(), order.getDiscountPrice()));
     }
