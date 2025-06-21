@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class MemoryMemberRepository implements MemberRepository{
 
+    // static이기 때문에 외부 구성 클래스에서 다른 참조값으로 생성을 하여도 공용으로 사용하기에 같은 인스턴스를 사용하게 된다.
     private static final Map<Long, Member> store = new HashMap<>();
 
     @Override

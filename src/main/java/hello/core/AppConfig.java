@@ -1,19 +1,28 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
-import hello.core.order.OrderService;
-import hello.core.order.OrderServiceImpl;
-import hello.core.order.RateDiscountPolicy;
+import hello.core.order.*;
 
 public class AppConfig {
 
+    // 애플리케이션에서 해당 역할에 사용되는 구현체를 지정함으로 역할과 구현을 분리함을 직관적으로 볼 수 있게 한다.
+
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    public DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new RateDiscountPolicy(), new MemoryMemberRepository());
+        return new OrderServiceImpl(discountPolicy(), memberRepository());
     }
 }
