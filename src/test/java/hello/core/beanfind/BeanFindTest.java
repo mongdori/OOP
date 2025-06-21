@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class BeanFindTest {
 
-    //AppConfig에서 등록된 애플리케이션 빈을 찾기 위해 스프링 컨테이너 접근
+    //AppConfig에서 등록된 애플리케이션 빈을 찾기 위해 스프링 컨테이너 접근 (공통 사용하는 것은 필드로)
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
     @Test
