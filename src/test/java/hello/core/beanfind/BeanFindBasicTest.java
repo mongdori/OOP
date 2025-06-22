@@ -38,4 +38,6 @@ public class BeanFindBasicTest {
         // 해당 메서드를 실행할 때 올바른 예외를 던지는지 확인.
         org.junit.jupiter.api.Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("xxx", MemberServiceImpl.class));
     }
+
+
 }
