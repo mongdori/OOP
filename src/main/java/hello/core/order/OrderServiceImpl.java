@@ -24,6 +24,10 @@ public class OrderServiceImpl implements OrderService {
         this.memberRepository = memberRepository;
     }
 
+    //test용
+    public MemberRepository getAddress() {
+        return memberRepository;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

@@ -2,6 +2,8 @@ package hello.core.singleton;
 
 import hello.core.AppConfig;
 import hello.core.member.MemberService;
+import hello.core.member.MemberServiceImpl;
+import hello.core.order.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,5 +53,19 @@ public class ContainerTest {
         System.out.println("memberService2 = " + memberService2);
 
         Assertions.assertThat(memberService1).isSameAs(memberService2); // isSameAs()는 참조를 비교.
+    }
+
+    @Test
+    @DisplayName("AppConfig 내의 순수 Java 코드로 new를 하면 객체 생성이 new한만큼 된다.")
+    void setAppConfig() {
+
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);// 구체 클래스를 사용하는 이유는 구체 클래스의 getAddress() 메서드를 사용하기 위해서
+        OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);// 구체 클래스를 사용하는 이유는 구체 클래스의 getAddress() 메서드를 사용하기 위해서
+
+        System.out.println("memberService -> MemoryMemberRepository = " + memberService.getAddress());
+        System.out.println("orderService -> MemoryMemberRepository = " + orderService.getAddress());
+
+        Assertions.assertThat(memberService.getAddress()).isSameAs(orderService.getAddress());
     }
 }

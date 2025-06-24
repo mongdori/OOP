@@ -11,6 +11,11 @@ public class MemberServiceImpl implements MemberService{
         this.memberRepository = memberRepository;
     }
 
+    //test용
+    public MemberRepository getAddress() {
+        return memberRepository;
+    }
+
     @Override
     public void join(Member member) {
         memberRepository.save(member); // 다형성에 의해서 memberRepository.save()는 MemoryMemberRepository의 save()가 호출된다.
