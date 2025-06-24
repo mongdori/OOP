@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     // MemberRepository 인터페이스르 잘 의존하고 있다. 하지만 오른쪽에 MemberRepository의 구현체인 MemoryMemberRepository까지 의존하고 있는 것이 문제점. DIP 위반
@@ -7,6 +11,7 @@ public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
